@@ -1,174 +1,119 @@
-# SQL-Analytical-Insights-AdventureWorks
-A collection of analytical SQL queries built on the AdventureWorks database, covering advanced SQL concepts such as CTEs, window functions, ROLLUP, CUBE, and user-defined functions.
+# 🛍️ Retail Analytics Case Study (SQL + Power BI)
 
-> 💡 Designed for data analysts and learners who want to understand **how to build, optimize, and document** analytical SQL code in a professional way.
+## 📖 Overview
+This project is a **retail analytics case study** designed for **portfolio presentation** and **data analytics interviews**.  
+It demonstrates the **end-to-end analytics workflow** — from **SQL-based data extraction and transformation** to **Power BI dashboard visualization** — using the **AdventureWorksDW2022** sample database.
 
----
-
-## 🧩 Contents
-
-1. **usp_CustomerID** — Retrieve customer info and order details  
-2. **ups_Employee_names_By_id** — Display employee names by department  
-3. **ups_Products_Color** — Filter products dynamically by color  
-4. **usp_SearchProducts_Dynamic** — Dynamic product search with flexible filters  
-5. **Customer Activity Analysis** — Identify top performing customers  
-6. **Shipping Lead Time Query** — Measure delivery efficiency per customer  
+The analysis focuses on **sales**, **products**, **customers**, **territories**, and **employee** data to uncover meaningful retail insights.
 
 ---
 
-## 1️⃣ Stored Procedure: `usp_CustomerID`
+## 🏗️ Project Architecture
 
-**Purpose:** Retrieve a customer’s personal info and total due amount for each order.  
-This procedure allows NULL input to display all customers if no ID is provided.
+```
+/retail-analytics-case-study
+│
+├── /sql_queries
+│ ├── 01_total_sales_by_year.sql
+│ ├── 02_avg_shipping_time.sql
+│ ├── 03_products_with_mountain.sql
+│ ├── 04_unique_hire_dates.sql
+│ └── ...
+│
+├── /powerbi_dashboard
+│ └── retail_analytics_dashboard.pbix
+│
+└── README.md
+```
 
-```sql
-CREATE PROCEDURE dbo.usp_CustomerID
-    @CustomerID INT = NULL
-AS
-BEGIN 
-    SET NOCOUNT ON;
+---
 
-    SELECT 
-        soh.CustomerID,
-        p.FirstName, p.LastName,
-        soh.TotalDue,
-        CAST(soh.OrderDate AS date) AS Order_Date
-    FROM Sales.SalesOrderHeader soh
-    JOIN Sales.Customer sc ON soh.CustomerID = sc.CustomerID
-    JOIN Person.Person p ON p.BusinessEntityID = sc.PersonID
+## 🎯 Business Objectives
+- Analyze **annual sales performance** and growth trends  
+- Identify **peak order periods**  
+- Evaluate **average shipping times** by territory  
+- Determine **top-selling product categories**  
+- Examine **employee hiring patterns**  
+- Present **clean, actionable insights** through Power BI visuals  
 
-2️⃣ Stored Procedure: ups_Employee_names_By_id
+---
 
-Purpose: Retrieve employee full names by department, supporting optional DepartmentID filtering.
-If @DeptID is NULL, all employees across all departments are displayed.
+## 🧠 SQL Analytics
+All SQL scripts used in this project are available in the `/sql_queries` folder.  
+Below is a summary of the key analytical queries:
 
-CREATE PROCEDURE dbo.ups_Employee_names_By_id
-    @DeptID INT = NULL
-AS
-BEGIN 
-    SET NOCOUNT ON;
+### 1️⃣ Total Sales & Order Count by Year  
+**File:** `01_total_sales_by_year.sql`  
+- Filters orders by year  
+- Computes total revenue and order count  
+- Demonstrates parameterized SQL query techniques  
 
-    SELECT 
-        d.DepartmentID,
-        p.FirstName + ' ' + p.LastName AS Full_Name,
-        d.Name AS Department_Name
-    FROM HumanResources.Department d
-    JOIN HumanResources.EmployeeDepartmentHistory edh
-        ON edh.DepartmentID = d.DepartmentID
-    JOIN Person.Person p
-        ON p.BusinessEntityID = edh.BusinessEntityID
-    WHERE (@DeptID IS NULL OR d.DepartmentID = @DeptID);
-END;
+### 2️⃣ Average Shipping Time by Territory  
+**File:** `02_avg_shipping_time.sql`  
+- Uses **CTE** for cleaner logic and modularity  
+- Calculates **average days between order and shipment**  
+- Returns only **territories with above-average shipping time**
 
-3️⃣ Stored Procedure: ups_Products_Color
+### 3️⃣ Products Containing “Mountain”  
+**File:** `03_products_with_mountain.sql`  
+- Demonstrates pattern-based text filtering using the `LIKE` operator  
 
-Purpose: Dynamically filter products by color.
-If color parameter is NULL, all products are returned.
+### 4️⃣ Unique Employee Hire Dates  
+**File:** `04_unique_hire_dates.sql`  
+- Groups employee data by hire date  
+- Removes duplicates using `GROUP BY` and `DISTINCT`
 
-CREATE PROCEDURE dbo.ups_Products_Color 
-    @Color NVARCHAR(15) = NULL 
-AS 
-BEGIN 
-    SET NOCOUNT ON;
+---
 
-    SELECT 
-        ProductID,
-        Name,
-        Color,
-        ListPrice,
-        Size
-    FROM Production.Product
-    WHERE (@Color IS NULL OR Color = @Color);
-END;
+## 📊 Power BI Dashboard
+A professional Power BI dashboard (`retail_analytics_dashboard.pbix`) brings the SQL insights to life with interactive visuals and KPIs.
 
-4️⃣ Stored Procedure: usp_SearchProducts_Dynamic
+### 🔍 Dashboard Highlights
+- Interactive **slicers** for *Year*, *Product*, and *Region*  
+- **KPI Cards** for revenue, order count, and average shipping duration  
+- **Line charts** showing sales trends over time  
+- **Bar charts** comparing performance by territory  
+- **Smart narrative** for automated natural language insights  
 
-Purpose: Perform dynamic product search by optional parameters (Size and Color).
-Demonstrates dynamic SQL construction and parameterization for flexible filtering.
+---
 
-CREATE PROCEDURE dbo.usp_SearchProducts_Dynamic
-    @Size NVARCHAR(10) = NULL,
-    @Color NVARCHAR(50) = NULL
-AS
-BEGIN
-    SET NOCOUNT ON;
+## 📝 How to Use the Project
+### ✅ Step 1 — Load SQL Scripts
+Run the `.sql` files in **SQL Server Management Studio (SSMS)** or **Azure Data Studio** connected to the `AdventureWorksDW2022` database.
 
-    DECLARE @sql NVARCHAR(MAX) = N'SELECT ProductID, Name, Color, Size 
-                                   FROM Production.Product WHERE 1=1';
-    DECLARE @params NVARCHAR(500) = N'@Size NVARCHAR(10), @Color NVARCHAR(50)';
+### ✅ Step 2 — Load Data into Power BI
+Open the `.pbix` file → click **Refresh Data** → connect to your SQL Server instance.
 
-    IF @Size IS NOT NULL
-        SET @sql += N' AND Size = @Size';
-    IF @Color IS NOT NULL
-        SET @sql += N' AND Color = @Color';
+### ✅ Step 3 — Explore Insights
+Navigate through the Power BI dashboard tabs:
+- **Sales Overview**
+- **Territory Analysis**
+- **Product Insights**
+- **HR Analytics**
 
-    EXEC sp_executesql @sql, @params, @Size = @Size, @Color = @Color;
-END;
+---
 
-5️⃣ Analytical Query: Customer Activity Overview
+## 🚀 Key Skills Demonstrated
+- **SQL:** CTEs, Joins, Window Functions, Aggregations, Filtering  
+- **Power BI:** DAX Basics, Data Modeling, KPI Cards, Interactive Visuals  
+- **Analytics Thinking:** Transforming data into insights  
+- **Business Acumen:** Retail performance analysis and KPI design  
 
-Purpose: Identify customers with more than 3 purchases and calculate their total spend.
-Useful for loyalty or segmentation analysis.
+---
 
-WITH Customer_CTE AS (
-    SELECT  
-         c.CustomerID,
-         p.FirstName + ' ' + p.LastName AS FullName
-    FROM Sales.Customer c
-    JOIN Person.Person p
-         ON p.BusinessEntityID = c.PersonID
-),
-OrderSummary_CTE AS (
-    SELECT 
-         soh.CustomerID,
-         COUNT(*) AS OrderCount,
-         SUM(soh.TotalDue) AS TotalPurchase
-    FROM Sales.SalesOrderHeader soh
-    GROUP BY soh.CustomerID
-    HAVING COUNT(*) > 3
-)
-SELECT 
-    c.FullName,
-    o.OrderCount,
-    o.TotalPurchase
-FROM Customer_CTE c
-JOIN OrderSummary_CTE o ON c.CustomerID = o.CustomerID
-ORDER BY o.TotalPurchase DESC;
+## 🧩 Tools & Technologies
+- **Database:** Microsoft SQL Server  
+- **Visualization:** Microsoft Power BI  
+- **Dataset:** AdventureWorksDW2022  
+- **Language:** SQL (T-SQL)
 
-6️⃣ Analytical Query: Shipping Lead Time Analysis
+---
 
-Purpose: Measure order-to-shipment duration (delivery efficiency).
-Calculates difference in days between order date and ship date for each customer.
+## 💡 Author
+**Ghazaleh Mo**  
+📧 [Insert your contact or LinkedIn link here]  
+🗂️ *Built with SQL + Power BI | Retail Analytics Portfolio Project*
 
-SELECT 
-      so.CustomerID,
-      (p.FirstName + ' ' + p.LastName) AS Full_Name,
-      CAST(so.OrderDate AS date) AS Order_Date,
-      CAST(so.ShipDate AS date) AS Ship_Date,
-      DATEDIFF(DAY, so.OrderDate, so.ShipDate) AS LeadTime_Days
-FROM Sales.SalesOrderHeader AS so
-LEFT JOIN Person.Person AS p 
-   ON p.BusinessEntityID = so.CustomerID
-WHERE so.OrderDate >= DATEADD(YEAR, -12, CAST(GETDATE() AS date))
-ORDER BY LeadTime_Days ASC;
+---
 
-🧠 Highlights & Best Practices
-
-Each procedure uses SET NOCOUNT ON; for cleaner execution.
-
-Parameters are designed to handle NULL inputs gracefully.
-
-Dynamic SQL queries are parameterized to avoid SQL injection.
-
-Analytical queries utilize CTE (Common Table Expressions) for readability and modularity.
-
-All scripts are compatible with AdventureWorks 2019+ schema.
-
-🏁 Final Note
-
-This project represents a practical showcase of SQL mastery in a real-world dataset —
-including stored procedures, analytical CTE queries, and dynamic parameterized logic.
-
-✨ Built for learning, optimized for performance, and documented for clarity.
-    WHERE (@CustomerID IS NULL OR soh.CustomerID = @CustomerID);
-END;
+⭐ If you found this project insightful, feel free to **star** the repository and check out my other data analytics projects!
