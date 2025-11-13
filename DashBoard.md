@@ -38,7 +38,7 @@ Provides insights into individual and regional performance:
 - Top Resellers by Total Revenue  
 - Sales contribution by Category and Country  
 
-![Sales_Department](https://raw.githubusercontent.com/SamiraAfjeh/SQL-Analytical-Insights-AdventureWorks/main/Images/4.Sales_Department.png)
+![Sales_Department](https://raw.githubusercontent.com/SamiraAfjeh/SQL-Analytical-Insights-AdventureWorks/main/Images/Sales1.png)
 
 
 ---
