@@ -4,10 +4,20 @@ This Power BI report visualizes key performance insights derived from the **Adve
 The dashboards focus on **sales quantity, cost, profit, and performance trends** across years, categories, and regions.  
 
 ---
-
+### 🔹 Dashboard 1 – Product Insights
+-Monthly Total Revenue  
+-Sales & Profit by Category
+-Total Revenue vs Total Cost by Year
+-Total Revenue vs Total Cost
 
 ---
+### 🔹 Dashboard 2 –Analyzes regional sales performance.
 
+-Sales vs Profit by Country & Category 
+-Number of Customers by Country
+-Sales Revenue by Country
+-Sales by Category
+---
 ### 🔹 Dashboard 3 – Revenue and Year-over-Year (YoY) Trends  
 Analyzes long-term growth patterns and profitability:  
 
