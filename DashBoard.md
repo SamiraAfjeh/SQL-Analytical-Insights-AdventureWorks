@@ -9,7 +9,7 @@ The dashboards focus on **sales quantity, cost, profit, and performance trends**
 -Sales & Profit by Category
 -Total Revenue vs Total Cost by Year
 -Total Revenue vs Total Cost
-![Product Insights] (https://raw.githubusercontent.com/SamiraAfjeh/SQL-Analytical-Insights-AdventureWorks/main/Images/1.Products.png)
+![Product Insights](https://raw.githubusercontent.com/SamiraAfjeh/SQL-Analytical-Insights-AdventureWorks/main/Images/1.Products.png)
 ---
 ### 🔹 Dashboard 2 –Analyzes regional sales performance.
 
