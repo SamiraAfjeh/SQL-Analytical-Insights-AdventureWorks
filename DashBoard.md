@@ -4,11 +4,13 @@ This Power BI report visualizes key performance insights derived from the **Adve
 The dashboards focus on **sales quantity, cost, profit, and performance trends** across years, categories, and regions.  
 
 ---
-### 🔹 Dashboard 1 – Product Insights
+### 🔹 Dashboard 1 – Product Insights.
+
 -Monthly Total Revenue  
 -Sales & Profit by Category
 -Total Revenue vs Total Cost by Year
 -Total Revenue vs Total Cost
+
 ![Product Insights](https://raw.githubusercontent.com/SamiraAfjeh/SQL-Analytical-Insights-AdventureWorks/main/Images/1.Products.png)
 ---
 ### 🔹 Dashboard 2 –Analyzes regional sales performance.
