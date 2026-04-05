@@ -20,7 +20,7 @@ The dashboards focus on **sales quantity, cost, profit, and performance trends**
 -Sales Revenue by Country
 -Sales by Category
 
-![regional sales performance](Images/Region.png)
+![regional sales performance](Images/Regions.png)
 ---
 ### 🔹 Dashboard 3 – Revenue and Year-over-Year (YoY) Trends  
 Analyzes long-term growth patterns and profitability:  
@@ -43,7 +43,7 @@ Provides insights into individual and regional performance:
 
 ---
 
-### 🔹 Dashboard 5 – What-If Analysis  
+### 🔹 Dashboard 5 – What_If Analysis  
 Explores dynamic scenarios for **Sales Quantity**, **Cost Change**, and **New Sales** using adjustable parameters.  
 
 - Visual comparison of base vs. new cost, sales, and profit  
