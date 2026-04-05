@@ -38,7 +38,7 @@ Provides insights into individual and regional performance:
 - Top Resellers by Total Revenue  
 - Sales contribution by Category and Country  
 
-![Sales_Department](Images/Sales_Departmet.png)
+![Sales_Department](Images/Sales_Department.png)
 
 
 ---
