@@ -11,7 +11,7 @@ The dashboards focus on **sales quantity, cost, profit, and performance trends**
 -Total Revenue vs Total Cost by Year
 -Total Revenue vs Total Cost
 
-![Product Insights](https://raw.githubusercontent.com/SamiraAfjeh/SQL-Analytical-Insights-AdventureWorks/main/Images/1.Products.png)
+![Product Insights](Images/Product.png)
 ---
 ### 🔹 Dashboard 2 –Analyzes regional sales performance.
 
@@ -20,7 +20,7 @@ The dashboards focus on **sales quantity, cost, profit, and performance trends**
 -Sales Revenue by Country
 -Sales by Category
 
-![regional sales performance](https://raw.githubusercontent.com/SamiraAfjeh/SQL-Analytical-Insights-AdventureWorks/main/Images/2.Regions.png)
+![regional sales performance](Images/Region.png)
 ---
 ### 🔹 Dashboard 3 – Revenue and Year-over-Year (YoY) Trends  
 Analyzes long-term growth patterns and profitability:  
@@ -29,7 +29,7 @@ Analyzes long-term growth patterns and profitability:
 - Monthly Revenue and YoY Sales Trend visualization  
 - Summary table displaying yearly and monthly comparisons  
 
-![Revenue and YoY Trends](https://raw.githubusercontent.com/SamiraAfjeh/SQL-Analytical-Insights-AdventureWorks/main/Images/3.Overview.png)
+![Revenue and YoY Trends](Images/Overview.png)
 
 ### 🔹 Dashboard 4 – Sales Department Overview  
 Provides insights into individual and regional performance:  
@@ -38,7 +38,7 @@ Provides insights into individual and regional performance:
 - Top Resellers by Total Revenue  
 - Sales contribution by Category and Country  
 
-![Sales_Department](https://raw.githubusercontent.com/SamiraAfjeh/SQL-Analytical-Insights-AdventureWorks/main/Images/Sales1.png)
+![Sales_Department](Images/Sales_Departmet.png)
 
 
 ---
@@ -50,6 +50,6 @@ Explores dynamic scenarios for **Sales Quantity**, **Cost Change**, and **New Sa
 - KPI cards highlight total cost, total sales, and profit margin  
 - “What-If” simulation demonstrates how strategic changes affect performance metrics  
 
-![What-If Analysis Dashboard](https://raw.githubusercontent.com/SamiraAfjeh/SQL-Analytical-Insights-AdventureWorks/main/Images/5.WhatIf.png)
+![What-If Analysis Dashboard](Images/WhatIf.png)
 
 Each dashboard is designed with a **consistent color theme**, intuitive layout, and **interactive slicers** to enhance analytical storytelling and decision-making.
